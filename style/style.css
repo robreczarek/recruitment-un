@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+  background-color: #e8eceb;
+  font-family: 'Roboto';
+  font-size: 1.5vw;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.header .logo {
+  float: left;
+}
+
+.header .title {
+  float: right;
+}
+
+.header div {
+  font-size: 2vw;
+  color: #08ab6b;
+}
+
+.bar-form {
+  clear: both;
+}
+
+.users {
+  width: 100%;
+}

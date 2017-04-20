@@ -11,23 +11,40 @@ body {
   margin: 0 auto;
 }
 
+.header {
+  margin-top: 30px;
+}
+
 .header .logo {
   float: left;
 }
 
+.header > .logo > img {
+  height: 4vw;
+}
+
 .header .title {
   float: right;
+  margin-top: 1.3vw;
 }
 
-.header div {
-  font-size: 2vw;
+.header span {
+  vertical-align: middle;
+  font-size: 1.8vw;
   color: #08ab6b;
 }
-
 .bar-form {
   clear: both;
 }
 
+.users th {
+  color: #6f7f85;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: left;
+}
+
 .users {
   width: 100%;
+  color: #6f7f85;
 }

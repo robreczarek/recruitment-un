@@ -11,7 +11,7 @@ export default class App extends Component {
       <div>
         <Header />
         <BarForm />
-        <Users />
+        {this.props.children}
       </div>
     );
   }

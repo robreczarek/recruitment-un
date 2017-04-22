@@ -35,16 +35,6 @@ body {
 }
 .bar-form {
   clear: both;
+  background-color: #ffffff;
 }
 
-.users th {
-  color: #6f7f85;
-  font-weight: bold;
-  text-transform: uppercase;
-  text-align: left;
-}
-
-.users {
-  width: 100%;
-  color: #6f7f85;
-}

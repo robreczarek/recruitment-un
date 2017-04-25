@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Header from './header';
 import Users from '../containers/users';
-import BarForm from './bar_form';
 
 
 export default class App extends Component {
@@ -10,8 +9,10 @@ export default class App extends Component {
     return (
       <div>
         <Header />
-        <BarForm />
-        {this.props.children}
+        <div className="bar-form">
+          {this.props.children}
+        </div>
+        <Users />
       </div>
     );
   }

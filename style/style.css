@@ -36,5 +36,6 @@ body {
 .bar-form {
   clear: both;
   background-color: #ffffff;
+  padding: 20px;
 }
 

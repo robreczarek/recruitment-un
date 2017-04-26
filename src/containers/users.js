@@ -31,7 +31,7 @@ class Users extends Component {
     return (
       <tr key={id}>
         <td className={styles.dataLP}>
-          <div className="circleSolid">{id}</div>
+          <div className={'circle ' + styles.lpBG}>{id}</div>
         </td>
         <td className={styles.dataUser}>{name}</td>
         <td className={styles.dataEmail}>{email}</td>

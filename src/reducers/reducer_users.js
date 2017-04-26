@@ -24,6 +24,11 @@ export default function() {
         id: 42, 
         name: 'Tobi Wobi',
         email: 'tobi@wobi.com'
+    },
+    {
+        id: 123, 
+        name: 'Manny Fresh',
+        email: 'manny@superfresh.com'
     }
   ];
 }

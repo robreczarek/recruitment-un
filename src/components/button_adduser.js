@@ -28,8 +28,8 @@ class ButtonAddUser extends Component {
   render() {
     return (
       <div className="buttonAddUser">
-        <div className="left">
-          <Link to="adduser"><div>ADD USER</div></Link>
+        <div className="left button">
+          <Link to="adduser"><i className="fa fa-plus-circle" aria-hidden="true"></i> Add User</Link>
         </div>
 
         <div className="left">

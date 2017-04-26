@@ -19,6 +19,11 @@ export default function() {
         id: 4, 
         name: 'Joe Brown',
         email: 'joe@brown.com'
+    },
+    {
+        id: 42, 
+        name: 'Tobi Wobi',
+        email: 'tobi@wobi.com'
     }
   ];
 }

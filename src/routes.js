@@ -9,6 +9,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={BtnAddUser} />
     <Route path="adduser" component={FormAddUser} />
+    <Route path="success" component={BtnAddUser} />
 
   </Route>
 );

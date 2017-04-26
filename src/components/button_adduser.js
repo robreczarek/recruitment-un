@@ -28,7 +28,7 @@ class ButtonAddUser extends Component {
   render() {
     return (
       <div className="barAddUser">
-        <div className="left button">
+        <div className="left buttonOutline">
           <Link to="adduser"><i className="fa fa-plus-circle" aria-hidden="true"></i> Add User</Link>
         </div>
 

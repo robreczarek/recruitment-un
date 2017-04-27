@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router';
+import { reduxForm } from 'redux-form';
+import { createUser } from '../actions/index'
 
 class FormUser extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      email: ''
-    }
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-  }
 
   handleSubmit(e, formData) {
     e.preventDefault();
@@ -27,27 +16,63 @@ class FormUser extends Component {
     });
   }
 
-  handleReset() {
-    this.setState({ name: '', email: '' });
-  }
-
   render() {
+    const { 
+      fields: { name, email },
+      handleSubmit
+    } = this.props;
+
     return (
-      <div id="barAddUser" className="formAddUser">
-        <form>
-          <input id="name" type="text" placeholder="Name..." className="left" value={this.state.name} onChange={e => this.setState({ name: e.target.value })} />
-          <input id="email" type="text" placeholder="Email..." className="left" value={this.state.email} onChange={e => this.setState({ email: e.target.value })} />
-          <div className="left buttonSolid" onClick={this.handleSubmit}>
-            Submit
+      <div className="formAddUser">
+        <form onSubmit={handleSubmit(this.props.createUser)}>
+          <div>
+            <div>
+              <input
+                type="text"
+                placeholder="Name..."
+                {...name}
+              />
+            </div>
           </div>
-          <div className="left reset" onClick={this.handleReset}>
-            Reset fields
+          <div>
+            <div>
+              <input
+                type="text"
+                placeholder="Email..."
+                {...email}
+              />
+            </div>
           </div>
+          <input type="submit" value="Submit" className="buttonSolid" />
+            
         </form>
+        <div className="formError">
+          { name.touched ? name.error : '' }
+          { email.touched ? email.error : '' }
+        </div>
       </div>
 
     );
   }
 }
 
-export default withRouter(FormUser);
+function validate(values) {
+  const errors = {};
+
+  if (!values.name) {
+    errors.name = ' Enter a name ';
+  }
+
+  if (!values.email) {
+    errors.email = ' Enter an email address ';
+  }
+
+  return errors;
+}
+
+
+export default reduxForm({
+  form: 'FormUser',
+  fields: ['name', 'email'],
+  validate
+}, null, { createUser })(withRouter(FormUser));

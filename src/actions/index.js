@@ -12,7 +12,9 @@ export function fetchUser() {
 }
 
 export function createUser(props) {
-  const request = [];
+  const request = new Promise((resolve, reject) => { 
+    resolve();
+  });
 
   return {
     type: CREATE_USER,

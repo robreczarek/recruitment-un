@@ -1,19 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
 import { createUser } from '../actions/index'
 
 class FormUser extends Component {
 
-  handleSubmit(e, formData) {
-    e.preventDefault();
-    this.props.router.push({
-      pathname: '/',
-      query: { 
-        success: true,
-        error: ''
-      }
-    });
+  static contextTypes = {
+    router: PropTypes.object
+  };
+
+  onSubmit(props) {
+
+    this.props.createUser(props)
+      .then(() => {
+        // blog post has been created, navigate the user to the index
+        // We navigate by calling this.context.router.push with the
+        // new path to navigate to.
+        this.context.router.push({
+          pathname: '/',
+          query: { 
+            success: true,
+            error: ''
+          }
+        });
+      });
   }
 
   render() {
@@ -24,7 +34,7 @@ class FormUser extends Component {
 
     return (
       <div className="formAddUser">
-        <form onSubmit={handleSubmit(this.props.createUser)}>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div>
             <div>
               <input

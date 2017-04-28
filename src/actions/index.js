@@ -8,9 +8,7 @@ export const FETCH_USERS = 'FETCH_USERS';
 const ROOT_URL = 'http://localhost:8181';
 
 export function createUser(props) {
-  const request = new Promise((resolve, reject) => { 
-    resolve();
-  });
+  const request = axios.post(`${ROOT_URL}/users/`, props);
 
   return {
     type: CREATE_USER,
@@ -18,10 +16,8 @@ export function createUser(props) {
   };
 }
 
-export function deleteUser(props) {
-  const request = new Promise((resolve, reject) => { 
-    resolve();
-  });
+export function deleteUser(id) {
+  const request = axios.delete(`${ROOT_URL}/users/${id}`);
 
   return {
     type: DELETE_USER,
@@ -31,7 +27,7 @@ export function deleteUser(props) {
 
 export function fetchUser(id) {
 
-   const request = [];
+   const request = axios.get(`${ROOT_URL}/users/${id}`);
 
   return {
     type: FETCH_USER,

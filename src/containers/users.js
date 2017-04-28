@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../actions/index';
+import { deleteUser, fetchUsers } from '../actions/index';
 
 import styles from '../../style/users.css';
 
@@ -8,6 +8,10 @@ class Users extends Component {
 
   componentWillMount() {
     this.props.fetchUsers();
+  }
+
+  handleDelete(userID) {
+    this.props.deleteUser(userID);
   }
 
   render() {
@@ -58,7 +62,7 @@ class Users extends Component {
         </td>
         <td className={styles.dataUser}>{name}</td>
         <td className={styles.dataEmail}>{email}</td>
-        <td className={styles.dataDelete}>X</td>
+        <td className={styles.dataDelete}><div onClick={ () => {this.handleDelete(id)} }>X</div></td>
       </tr>
     );
   }
@@ -72,4 +76,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { fetchUsers })(Users);
+export default connect(mapStateToProps, { deleteUser, fetchUsers })(Users);

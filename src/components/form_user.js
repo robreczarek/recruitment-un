@@ -2,12 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import { withRouter } from 'react-router';
 import { reduxForm } from 'redux-form';
 import { createUser } from '../actions/index'
+import EmailValidator from 'email-validator';
 
 class FormUser extends Component {
 
   static contextTypes = {
     router: PropTypes.object
   };
+
+  componentDidMount(){
+    this.name.focus(); 
+  }
 
   onSubmit(props) {
 
@@ -37,6 +42,7 @@ class FormUser extends Component {
               <input
                 type="text"
                 placeholder="Name..."
+                ref={(input) => { this.name = input; }}
                 {...name}
               />
             </div>
@@ -54,8 +60,8 @@ class FormUser extends Component {
             
         </form>
         <div className="formError">
-          { name.touched ? name.error : '' }
-          { email.touched ? email.error : '' }
+          <div className="clear">{ name.touched ?  name.error : '' }</div>
+          <div className="clear">{ email.touched ? email.error : '' }</div>
         </div>
       </div>
 
@@ -67,12 +73,24 @@ function validate(values) {
   const errors = {};
 
   if (!values.name) {
-    errors.name = ' Enter a name ';
+    errors.name = 'Enter a name';
+  } else {
+    if (values.name.length > 20) {
+      errors.name = 'Name is over 20 letters';
+    }
   }
 
+
+
   if (!values.email) {
-    errors.email = ' Enter an email address ';
+    errors.email = 'Enter an email address';
   }
+
+  if (EmailValidator.validate(values.email) === false) {
+    errors.email = 'Enter a valid email address';
+  }
+
+  
 
   return errors;
 }

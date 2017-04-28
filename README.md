@@ -11,16 +11,15 @@ $ yarn install
 
 ## How to run?
 Make sure you are in the folder where the code was downloaded to before proceeding.
+Step 1: Start API server
+```
+npm run api
+```
+Step 2: Run UI server:
 ```
 npm start
 ```
-Once the script is ready, point your browser to [http://localhost:8080/](http://localhost:8080/)
-
-## How to test?
-Just fire off the following command:
-```
-npm test
-```
+Once fire up, point your browser to [http://localhost:8080/](http://localhost:8080/)
 
 ## Credits
 Used Stephen Grider's [ReduxSimpleStarter](https://github.com/StephenGrider/ReduxSimpleStarter) as a boilerplate setup

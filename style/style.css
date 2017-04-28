@@ -91,6 +91,10 @@ body {
   float: right;
 }
 
+.clear {
+  clear: both;
+}
+
 .reset {
   color: red;
   text-decoration: underline;
@@ -100,6 +104,7 @@ body {
 .formError {
   clear: both;
   color: red;
+  font-size: 1.3vw;
 }
 
 .buttonSolid {

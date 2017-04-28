@@ -11,7 +11,7 @@ class ButtonAddUser extends Component {
     if (success === 'true') {
       return (
         <div className="notification">
-          <i className="fa fa-check success" aria-hidden="true"></i> You have successfully added an user.
+          <i className="fa fa-check success" aria-hidden="true"></i> You have successfully added a user.
         </div>
       );
     } else if (success === 'false' && error) {

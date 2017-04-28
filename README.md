@@ -11,6 +11,7 @@ $ yarn install
 
 ## How to run?
 Make sure you are in the folder where the code was downloaded to before proceeding.
+
 Step 1: Start API server
 ```
 npm run api

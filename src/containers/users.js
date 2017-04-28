@@ -43,7 +43,7 @@ class Users extends Component {
     } else {
       return (
         <tr>
-          <td colSpan="4">No users yet</td>
+          <td colSpan="4" className={styles.dataLP}>No users yet</td>
         </tr>
       );
     }

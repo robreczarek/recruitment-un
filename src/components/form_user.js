@@ -80,8 +80,6 @@ function validate(values) {
     }
   }
 
-
-
   if (!values.email) {
     errors.email = 'Enter an email address';
   }
@@ -89,8 +87,6 @@ function validate(values) {
   if (EmailValidator.validate(values.email) === false) {
     errors.email = 'Enter a valid email address';
   }
-
-  
 
   return errors;
 }

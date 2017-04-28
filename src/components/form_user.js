@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { withRouter } from 'react-router';
-import { reduxForm } from 'redux-form';
+import { reduxForm, change, untouch } from 'redux-form';
 import { createUser } from '../actions/index'
 import EmailValidator from 'email-validator';
 
@@ -28,11 +27,29 @@ class FormUser extends Component {
       });
   }
 
+  resetAdvancedFilters(form){
+    const fields = ['name','email']
+    for (var i = 0; i < fields.length; i++) {
+      this.props.dispatch(change(form,fields[i],null))
+      this.props.dispatch(untouch(form,fields[i]))
+    }
+    this.name.focus(); 
+  }
+
+  renderReset() {
+
+    return (
+      <a href="#" className="reset" onClick={ () => { this.resetAdvancedFilters('FormUser') } }>Reset fields</a>
+    );
+  }
+
   render() {
     const { 
       fields: { name, email },
       handleSubmit
     } = this.props;
+
+    const fields = this.props.fields;
 
     return (
       <div className="formAddUser">
@@ -59,6 +76,9 @@ class FormUser extends Component {
           <input type="submit" value="Submit" className="buttonSolid" />
             
         </form>
+        <div className="formReset">
+          <div className="clear">{ fields.name.value || fields.email.value ?  this.renderReset() : '' }</div>
+        </div>
         <div className="formError">
           <div className="clear">{ name.touched ?  name.error : '' }</div>
           <div className="clear">{ email.touched ? email.error : '' }</div>
@@ -96,4 +116,4 @@ export default reduxForm({
   form: 'FormUser',
   fields: ['name', 'email'],
   validate
-}, null, { createUser })(withRouter(FormUser));
+}, null, { createUser })(FormUser);

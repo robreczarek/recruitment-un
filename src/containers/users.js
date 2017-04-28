@@ -75,5 +75,4 @@ function mapStateToProps(state) {
   }
 }
 
-
 export default connect(mapStateToProps, { deleteUser, fetchUsers })(Users);

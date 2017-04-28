@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchUsers } from '../actions/index';
 
 import styles from '../../style/users.css';
 
 class Users extends Component {
 
+  componentWillMount() {
+    this.props.fetchUsers();
+  }
+
   render() {
+
+    const users = this.props.users.users;
+
     return (
       <table className={styles.users}>
         <thead>
@@ -17,16 +25,31 @@ class Users extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.users.map(this.renderUsers)}
+          {this.renderUsers(users)}
         </tbody>
       </table>
     );
   }
 
-  renderUsers(userData) {
-    const id = userData.id;
-    const name = userData.name;
-    const email = userData.email;
+  renderUsers(users) {
+    if (users.length) {
+      return users.map((user) => {
+        return this.renderUser(user);
+      });
+    } else {
+      return (
+        <tr>
+          <td colSpan="4">No users yet</td>
+        </tr>
+      );
+    }
+  }
+
+  renderUser(user) {
+
+    const id = user.id;
+    const name = user.name;
+    const email = user.email;
 
     return (
       <tr key={id}>
@@ -48,4 +71,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Users);
+
+export default connect(mapStateToProps, { fetchUsers })(Users);

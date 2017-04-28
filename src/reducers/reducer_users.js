@@ -1,4 +1,17 @@
-export default function() {
+import { CREATE_USER, DELETE_USER, FETCH_USER, FETCH_USERS } from '../actions/index';
+
+const INITIAL_STATE = { users: initialUsers() };
+
+export default function(state = INITIAL_STATE, action) {
+  switch(action.type) {
+    case FETCH_USERS:
+      return {...state, users: action.payload.data };
+    default:
+      return state;
+  }
+}
+
+function initialUsers() {
   return [
     {
         id: 1, 

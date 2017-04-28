@@ -13,9 +13,6 @@ class FormUser extends Component {
 
     this.props.createUser(props)
       .then(() => {
-        // blog post has been created, navigate the user to the index
-        // We navigate by calling this.context.router.push with the
-        // new path to navigate to.
         this.context.router.push({
           pathname: '/',
           query: { 

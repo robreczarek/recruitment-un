@@ -49,6 +49,10 @@
   padding-right: 2vw;
 }
 
+.dataDelete div {
+  cursor: pointer;
+}
+
 .lpBG {
   background-color: #e8eceb;
   font-weight: bold;

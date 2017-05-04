@@ -77,7 +77,7 @@ class FormUser extends Component {
             
         </form>
         <div className="formReset">
-          <div className="clear">{ fields.name.value || fields.email.value ?  this.renderReset() : '' }</div>
+          <div className="clear">{ fields.name.value || fields.email.value ? this.renderReset() : '' }</div>
         </div>
         <div className="formError">
           <div className="clear">{ name.touched ?  name.error : '' }</div>

@@ -16,7 +16,7 @@ class Users extends Component {
 
   render() {
 
-    const users = this.props.users.users;
+    const users = this.props.users.users.sort(compare);
 
     return (
       <table className={styles.users}>
@@ -37,8 +37,8 @@ class Users extends Component {
 
   renderUsers(users) {
     if (users.length) {
-      return users.map((user) => {
-        return this.renderUser(user);
+      return users.map((user, index) => {
+        return this.renderUser(user, index+1);
       });
     } else {
       return (
@@ -49,7 +49,7 @@ class Users extends Component {
     }
   }
 
-  renderUser(user) {
+  renderUser(user, index) {
 
     const id = user.id;
     const name = user.name;
@@ -58,7 +58,7 @@ class Users extends Component {
     return (
       <tr key={id}>
         <td className={styles.dataLP}>
-          <div className={'circle ' + styles.lpBG}>{id}</div>
+          <div className={'circle ' + styles.lpBG}>{index}</div>
         </td>
         <td className={styles.dataUser}>{name}</td>
         <td className={styles.dataEmail}>{email}</td>
@@ -67,6 +67,16 @@ class Users extends Component {
     );
   }
 
+}
+
+function compare(a,b) {
+  if (a.id < b.id) {
+    return 1;
+  }
+  if (a.id > b.id) {
+    return -1;
+  }
+  return 0;
 }
 
 function mapStateToProps(state) {

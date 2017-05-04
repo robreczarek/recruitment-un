@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link  } from 'react-router';
-import { fetchUsers } from '../actions/index';
 
 class ButtonAddUser extends Component {
 
@@ -75,4 +74,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchUsers })(ButtonAddUser);
+export default connect(mapStateToProps)(ButtonAddUser);

@@ -1,6 +1,6 @@
 import { FETCH_USERS } from '../actions/index';
 
-const INITIAL_STATE = { users: [], message: {} };
+const INITIAL_STATE = { users: [] };
 
 export default function(state = INITIAL_STATE, action) {
   switch(action.type) {

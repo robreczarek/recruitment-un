@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { reduxForm, change, untouch } from 'redux-form';
-import { createUser } from '../actions/index'
+import { createUser, fetchUsers, pushError } from '../actions/index'
 import EmailValidator from 'email-validator';
 
 class FormUser extends Component {
@@ -9,25 +10,42 @@ class FormUser extends Component {
     router: PropTypes.object
   };
 
+  componentWillMount() {
+    this.props.fetchUsers();
+  }
+
   componentDidMount(){
     this.name.focus(); 
   }
 
-  onSubmit(props) {
-
-    this.props.createUser(props)
-      .then(() => {
-        this.context.router.push({
-          pathname: '/',
-          query: { 
-            success: true,
-            error: ''
-          }
-        });
-      });
+  checkUser() {
+    return this.props.users.users.find((user) => {
+      return user.email === this.props.fields.email.value;
+    })
   }
 
-  resetAdvancedFilters(form){
+  onSubmit(props) {
+
+    let check = this.checkUser();
+
+    if (check) {
+      this.props.pushError('existing user');
+    } else {
+      this.props.createUser(props)
+        .then(() => {
+          this.context.router.push({
+            pathname: '/',
+            query: { 
+              success: true,
+              error: ''
+            }
+          });
+        });
+    }
+    
+  }
+
+  resetForm(form) {
     const fields = ['name','email']
     for (var i = 0; i < fields.length; i++) {
       this.props.dispatch(change(form,fields[i],null))
@@ -36,10 +54,21 @@ class FormUser extends Component {
     this.name.focus(); 
   }
 
+  renderError(error) {
+    switch (error) {
+      case 'existing user':
+        return (
+          <div className="clear">
+            This user already exists in the database
+          </div>
+        );
+    }
+  }
+
   renderReset() {
 
     return (
-      <a href="#" className="reset" onClick={ () => { this.resetAdvancedFilters('FormUser') } }>Reset fields</a>
+        <a href="#" className="reset" onClick={ () => { this.resetForm('FormUser') } }>Reset fields</a>
     );
   }
 
@@ -69,6 +98,7 @@ class FormUser extends Component {
               <input
                 type="text"
                 placeholder="Email..."
+                ref={(input) => { this.email = input; }}
                 {...email}
               />
             </div>
@@ -82,6 +112,7 @@ class FormUser extends Component {
         <div className="formError">
           <div className="clear">{ name.touched ?  name.error : '' }</div>
           <div className="clear">{ email.touched ? email.error : '' }</div>
+          { this.renderError(this.props.error_message.error_message) }
         </div>
       </div>
 
@@ -111,9 +142,20 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return {
+    users: state.users,
+    error_message: state.error_message
+  }
+}
 
-export default reduxForm({
+FormUser = reduxForm({
   form: 'FormUser',
   fields: ['name', 'email'],
   validate
 }, null, { createUser })(FormUser);
+
+FormUser = connect(mapStateToProps, { fetchUsers, pushError })(FormUser);
+
+
+export default FormUser;

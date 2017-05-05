@@ -5,6 +5,8 @@ export const DELETE_USER = 'DELETE_USER';
 export const FETCH_USER = 'FETCH_USER';
 export const FETCH_USERS = 'FETCH_USERS';
 
+export const PUSH_ERROR = 'PUSH_ERROR';
+
 const ROOT_URL = 'http://localhost:8181';
 
 export function createUser(props) {
@@ -44,4 +46,14 @@ export function fetchUsers() {
     payload: request
   };
 }
+
+export function pushError(message) {
+
+  return {
+    type: PUSH_ERROR,
+    payload: message
+  };
+}
+
+
 

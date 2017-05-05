@@ -16,8 +16,6 @@ class Users extends Component {
 
   render() {
 
-    const users = this.props.users.users.sort(compare);
-
     return (
       <table className={styles.users}>
         <thead>
@@ -29,7 +27,7 @@ class Users extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.renderUsers(users)}
+          {this.renderUsers(this.props.users.users.sort(compare))}
         </tbody>
       </table>
     );

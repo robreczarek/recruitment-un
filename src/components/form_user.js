@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { reduxForm, change, untouch } from 'redux-form';
-import { createUser, fetchUsers, pushError } from '../actions/index'
 import EmailValidator from 'email-validator';
+
+import { createUser } from '../actions/index';
 
 class FormUser extends Component {
 
@@ -62,11 +62,12 @@ class FormUser extends Component {
             This user already exists in the database
           </div>
         );
+      default:
+        return <div className="clear"></div>
     }
   }
 
   renderReset() {
-
     return (
         <a href="#" className="reset" onClick={ () => { this.resetForm('FormUser') } }>Reset fields</a>
     );
@@ -142,20 +143,10 @@ function validate(values) {
   return errors;
 }
 
-function mapStateToProps(state) {
-  return {
-    users: state.users,
-    error_message: state.error_message
-  }
-}
-
 FormUser = reduxForm({
   form: 'FormUser',
   fields: ['name', 'email'],
   validate
 }, null, { createUser })(FormUser);
-
-FormUser = connect(mapStateToProps, { fetchUsers, pushError })(FormUser);
-
 
 export default FormUser;

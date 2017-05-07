@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link  } from 'react-router';
+import { Link } from 'react-router';
 
 class ButtonAddUser extends Component {
 
@@ -68,10 +67,4 @@ class ButtonAddUser extends Component {
 
 }
 
-function mapStateToProps(state) {
-  return {
-    users: state.users
-  }
-}
-
-export default connect(mapStateToProps)(ButtonAddUser);
+export default ButtonAddUser;

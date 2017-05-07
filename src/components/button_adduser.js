@@ -35,18 +35,18 @@ class ButtonAddUser extends Component {
 
     return (
       <div className="barAddUser">
-        {this.renderButtonAddUser()}
+        {this.renderButtonAddUser(this.props.users.users.length)}
 
         <div className="barNotifications">
           {this.userAdded()}
-          {this.renderTooManyUsers()}
+          {this.renderTooManyUsers(this.props.users.users.length)}
         </div>
       </div>
     );
   }
 
-  renderButtonAddUser() {
-    if (this.props.users.users.length < this.maxUsers) {
+  renderButtonAddUser(numUsers) {
+    if (numUsers < this.maxUsers) {
       return (
         <div className="left buttonOutline">
           <Link to="adduser"><i className="fa fa-plus-circle" aria-hidden="true"></i> Add User</Link>
@@ -55,8 +55,8 @@ class ButtonAddUser extends Component {
     }
   }
 
-  renderTooManyUsers() {
-    if (this.props.users.users.length >= this.maxUsers) {
+  renderTooManyUsers(numUsers) {
+    if (numUsers >= this.maxUsers) {
       return (
         <div className="notification">
           <i className="fa fa-exclamation-circle warning" aria-hidden="true"></i> You have reached the maximum number of users.

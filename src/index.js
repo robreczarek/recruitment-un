@@ -7,13 +7,15 @@ import ReduxLogger from 'redux-logger';
 import ReduxPromise from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 
-import reducers from './reducers';
+import rootReducer from './reducers';
 import routes from './routes';
 
-const createStoreWithMiddleware = applyMiddleware(thunk, ReduxPromise(), ReduxLogger)(createStore);
+//const createStoreWithMiddleware = applyMiddleware(thunk, ReduxPromise(), ReduxLogger)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk, ReduxPromise())(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={createStoreWithMiddleware(rootReducer)}>
     <Router history={browserHistory} routes={routes} />
   </Provider>
-  , document.querySelector('.container'));
+  , document.querySelector('.container')
+);

@@ -1,5 +1,5 @@
 import React from 'react';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Users from '../components/users';
@@ -12,7 +12,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ deleteUser, fetchUsers }, dispatch);
+  return bindActionCreators({ deleteUser, fetchUsers }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);

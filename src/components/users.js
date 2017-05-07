@@ -4,13 +4,16 @@ import styles from '../../style/users.css';
 
 class Users extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchUsers();
   }
 
   handleDelete(userID, e) {
     e.preventDefault();
-    this.props.deleteUser(userID);
+    this.props.deleteUser(userID)
+      .then(() => {
+        this.context.router.push('/');
+      });
   }
 
   render() {

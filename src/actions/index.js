@@ -37,7 +37,6 @@ export function deleteUser(id) {
   return function(dispatch) {
     return axios.delete(`${ROOT_URL}/users/${id}`)
       .then((request) => {
-        console.log(request);
         dispatch({
           type: DELETE_USER_SUCCESS,
           payload: id

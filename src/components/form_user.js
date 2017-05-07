@@ -24,7 +24,7 @@ class FormUser extends Component {
     })
   }
 
-  onSubmit(props) {
+  handleSubmit(props) {
 
     let check = this.checkUser();
 
@@ -40,7 +40,16 @@ class FormUser extends Component {
               error: ''
             }
           });
-        });
+        })
+        .catch((error) => {
+          this.context.router.push({
+            pathname: '/',
+            query: { 
+              success: false,
+              error: error
+            }
+          })
+        })
     }
     
   }
@@ -83,7 +92,7 @@ class FormUser extends Component {
 
     return (
       <div className="formAddUser">
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <form onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
           <div>
             <div>
               <input

@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 
 import styles from '../../style/users.css';
 
 class Users extends Component {
+
+  constructor(props) {
+     super(props);
+     
+     this.handleDelete = this.handleDelete.bind(this);
+  } 
 
   componentWillMount() {
     this.props.fetchUsers();
@@ -12,7 +19,7 @@ class Users extends Component {
     e.preventDefault();
     this.props.deleteUser(userID)
       .then(() => {
-        this.context.router.push('/');
+        browserHistory.push('/')
       });
   }
 

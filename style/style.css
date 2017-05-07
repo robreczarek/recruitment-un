@@ -14,11 +14,19 @@ body {
 }
 
 .header {
-  margin-top: 30px;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.header .logo, .header .title {
+  max-width: 50%;
 }
 
 .header .logo {
-  float: left;
+  justify-content: flex-start;
 }
 
 .header > .logo > img {
@@ -26,14 +34,17 @@ body {
 }
 
 .header .title {
-  float: right;
+  justify-content: flex-end;
   margin-top: 1.3vw;
 }
 
 .header span {
-  vertical-align: middle;
   font-size: 1.8vw;
+}
+
+.header a {
   color: #08ab6b;
+  text-decoration: none;
 }
 
 .barForm {

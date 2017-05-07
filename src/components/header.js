@@ -7,7 +7,8 @@ export default () => {
         <img src="../../images/logo.png" border="0" />
       </div>
       <div className="title">
-        <span>www.positionly.com</span>
+        <span><a href="http://www.positionly.com">www.positionly.com
+</a></span>
       </div>
     </div>
   );
